@@ -31,29 +31,49 @@ void pop()
 	else
 	{
 		node = front->next;
+		free(front) ;//FREE THE FRONT
 		front = node;
+		if(!front){
+			rear = NULL;
+		}
 	}
 }
+
 void search(int x)
 {
 	alfaptr node = front;
 	int counter = 0;
-	while (node)
-		if (node->x == x)
+	while (node){
+		if (node->x == x){
 			printf("%d", counter);
+		}
 		else {
 			printf("ERROR2");
 			break;
 		}
 		node = node->next;
+		counter ++;
+	}
 }
 
 void rpop() {//pop last element
-	alfaptr node = front;
-	while (node)
-		node = node->next;
-	free(rear);
-	rear = node;
+    alfaptr node = front;
+    alfaptr prev = NULL;
+
+    while (node && node->next) {
+        prev = node;
+        node = node->next;
+    }
+
+    if (node == front) {
+        free(front);
+        front = NULL;
+        rear = NULL;
+    } else if (prev) {
+        free(prev->next);
+        prev->next = NULL;
+        rear = prev;
+    }
 }
 
 void set()
@@ -66,7 +86,7 @@ void set()
 int size()
 {
 	alfaptr node = front;
-	int count;
+	int count = 0;//initialize
 	while (node)
 		count++;node = node->next;
 	return count;
@@ -78,9 +98,11 @@ void show()
 		for (int i = 0; i < MAX_SIZE; i++)
 			printf("%d ", arr[i]);
 	}
+
 	else
 	{
 		printf("ERROR3");
+
 	}
 }
 
@@ -88,7 +110,7 @@ int average()
 {
 
 	alfaptr node = front;
-	int sum = 0, count;
+	int sum = 0, count = 0;//init with zero
 	while (node) {
 		sum += node->x;
 		count++;
@@ -97,7 +119,7 @@ int average()
 	return sum / count;
 }
 
-void main()
+int main()
 {
 	int cmd;
 	long long int x;
@@ -133,4 +155,5 @@ void main()
 			exit(0);
 		}
 	}
+	return 0;
 }
