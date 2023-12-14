@@ -5,9 +5,9 @@ class container {
 
 	int size;
 public:
-	float* p;
+	float* p= new float; // it is uninitialized
 	container(int s) :size(s){}
-	const int& getsize() { return size;}
+	int& getsize() { return size;}// const was removed
 
 };
 
@@ -15,12 +15,12 @@ class vector :public container {
 
 	int call_num;
 public:
-	explicit vector(int l) :len(l),size(1 * 100){
+	explicit vector(int l) :len(l),container(1 * 100) ,call_num(0){
 		p = new float();
 	}
 	int len;
-	int& getlen() const {
-		call_num ++;
+	int& getlen(){
+		call_num ++;//const function can't have anything changed in itself and can't return a referenc
 		return len;
 	}
 	~vector() = default;
@@ -29,12 +29,13 @@ public:
 int main() {
 
 	container c1(100);
-	vector v1 = c1;
+	vector v1(100);//object from child cant be equal to father
 	container& r1 = v1;
 	container c2 = 100;
 	c2.getsize() = 20;
 	cout << c2.getsize();
-	vector v2 = 100;
-	v2.getlen = 40;
+	vector v2 (100); // = operator isnt overloaded or casting from int to vector
+	v2.getlen() = 40; // for calling function need ()
 	cout << v2.getlen();
 }
+//out put: 2040
