@@ -8,3 +8,6 @@ int main()
     printf("%c", (char)(*ptr2 - *ptr1));
     return 0;
 }
+// 50
+// 48=0,49=1,50=2->2
+//successfull

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -22,6 +21,9 @@ int main() {
             "class"
     };
     char findIt;
-    cin >> findIt;
-    cout << countAllSpecificChars(sArr, 4, findIt);
+   std:: cin >> findIt;
+   std:: cout << countAllSpecificChars(sArr, 4, findIt);
+
 }
+
+//successfull
