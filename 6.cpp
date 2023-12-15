@@ -9,3 +9,6 @@ int main()
 	printf("%d\n", a);
 	return 0;
 }
+
+//the code run correctly
+// output: 513
