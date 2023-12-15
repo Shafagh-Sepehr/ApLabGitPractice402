@@ -97,7 +97,7 @@ int average()
 	return sum / count;
 }
 
-void main()
+int main()
 {
 	int cmd;
 	long long int x;
@@ -134,3 +134,6 @@ void main()
 		}
 	}
 }
+
+//The code does not work correctly,
+// "push" does not work correctly
